@@ -1,4 +1,4 @@
-# Lab 01 -- Router on Stick
+# Lab 01 — Router on Stick
 
 > Настройка VLAN и маршрутизации между VLAN методом «Router on Stick»
 
