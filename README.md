@@ -4,4 +4,4 @@
 
 ## Содержание
 
-1. [./lab-01](VLAN / Router-on-Stick)
+1. [VLAN / Router-on-Stick](./lab-01)
