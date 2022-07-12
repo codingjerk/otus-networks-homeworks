@@ -1,4 +1,4 @@
-# Lab 01. VLAN / Router-on-Stick
+# Lab 01. Коммутация. VLAN. Router-on-Stick
 
 > Настроить маршрутизацию в сети между разными VLAN'ами
 
