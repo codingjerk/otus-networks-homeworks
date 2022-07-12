@@ -35,7 +35,7 @@ PC2 | eth0 | S2 | - | 192.168.3.3
 
 <details>
   <summary>PC1</summary>
-  
+
   ```shell
   ip 192.168.2.3 192.168.2.1 24
   ```
@@ -43,7 +43,7 @@ PC2 | eth0 | S2 | - | 192.168.3.3
 
 <details>
   <summary>PC2</summary>
-  
+
   ```shell
   ip 192.168.3.3 192.168.3.1 24
   ```
@@ -51,10 +51,10 @@ PC2 | eth0 | S2 | - | 192.168.3.3
 
 <details>
   <summary>S1</summary>
-  
+
   ```
   enable
-  
+
   configure terminal
     hostname S1
     no ip domain-lookup
@@ -83,7 +83,7 @@ PC2 | eth0 | S2 | - | 192.168.3.3
     interface vlan 2
       ip address 192.168.2.2 255.255.255.0
     exit
-    
+
     ip default-gateway 192.168.2.1
   exit
 
@@ -93,10 +93,10 @@ PC2 | eth0 | S2 | - | 192.168.3.3
 
 <details>
   <summary>S2</summary>
-  
+
   ```
   enable
-  
+
   configure terminal
     hostname S2
     no ip domain-lookup
@@ -109,7 +109,7 @@ PC2 | eth0 | S2 | - | 192.168.3.3
       switchport trunk native vlan 4
       switchport mode trunk
       switchport nonegotiate
-      
+
       no shutdown
     exit
 
@@ -121,7 +121,7 @@ PC2 | eth0 | S2 | - | 192.168.3.3
       switchport trunk native vlan 4
       switchport mode trunk
       switchport nonegotiate
-      
+
       no shutdown
     exit
 
@@ -137,7 +137,7 @@ PC2 | eth0 | S2 | - | 192.168.3.3
     interface vlan 3
       ip address 192.168.3.2 255.255.255.0
     exit
-    
+
     ip default-gateway 192.168.3.1
   exit
 
@@ -181,7 +181,7 @@ host (192.168.3.1) not reachable
 
 <details>
   <summary>R1</summary>
-  
+
   ```
   enable
 
@@ -210,16 +210,16 @@ host (192.168.3.1) not reachable
 
       encapsulation dot1Q 3
       ip address 192.168.3.1 255.255.255.0
-      
+
       no shutdown
     exit
 
     interface e0/0.4
       description Native VLAN
-      
+
       no ip address
       encapsulation dot1Q 4 native
-      
+
       no shutdown
     exit
   exit
@@ -232,7 +232,7 @@ host (192.168.3.1) not reachable
 
 <details>
   <summary>Проверим, что пакеты доходят до маршрутизатора</summary>
-  
+
   ```
   PC1> ping 192.168.2.1
 
@@ -270,7 +270,7 @@ host (192.168.3.1) not reachable
 
 <details>
   <summary>Проверим, что пакеты маршрутизируются между ПК</summary>
-  
+
   ```
   PC1> ping 192.168.3.3
 
@@ -292,7 +292,7 @@ host (192.168.3.1) not reachable
 
 <details>
   <summary>Проверим, что происходит, если попробовать достучаться до несуществующего хоста</summary>
-  
+
   ```
   VPCS> ping 192.168.2.4
 
