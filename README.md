@@ -5,3 +5,4 @@
 ## Содержание
 
 1. [VLAN / Router-on-Stick](./lab-01)
+2. [STP](./lab-02)
