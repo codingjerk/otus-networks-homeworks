@@ -143,16 +143,89 @@
 |VPC  |`193.1.7.200`|`2001:7::2:0:0`|
 |VPC8 |`193.1.7.210`|`2001:7::2:1:0`|
 
-В EVE-NG назначать VPC IPv6-адреса нельзя,
-поэтому при конфигурации ограничимся IPv4.
-
 ### VLAN
 
 Теперь определимся с VLAN'ами.
+Выделим для каждого VPC в каждом офисе свой VLAN,
+настроим Management VLAN.
 
-TODO: VLAN
+|VLAN|Устройство|Порт|
+|100 (Management)|SW29|e0/3|
+|                |SW2 |e0/3|
+|                |SW3 |e0/3|
+|                |SW4 |e1/2|
+|                |SW5 |e1/2|
+|                |SW9 |e1/0|
+|                |SW10|e1/0|
 
-TODO: Проконфигурируем устройства
-TODO: броадкаст-штормы
+|VLAN|Устройство|Порт|VPC|
+|200|SW29|e0/0|VPC30
+|300|    |e0/1|VPC31
+|400|SW2 |e0/2|VPC1
+|500|SW3 |e0/2|VPC7
+|600|SW9 |e0/2|VPC8
+|700|SW10|e0/2|VPC
 
-TODO: итоговая схема
+### Конфигурация
+
+Теперь проконфигурируем все устройства:
+
+#### Роутеры
+
+#### Свичи
+
+#### VPCs
+
+<details>
+  <summary>VPC30</summary>
+
+  ```
+  ip 193.1.5.200 193.1.5.100 24
+  ip auto
+  ```
+</details>
+
+<details>
+  <summary>VPC31</summary>
+
+  ```
+  ip 193.1.5.210 193.1.5.101 24
+  ip auto
+  ```
+</details>
+
+<details>
+  <summary>VPC1</summary>
+
+  ```
+  ip 193.1.6.200 193.1.6.102 24
+  ip auto
+  ```
+</details>
+
+<details>
+  <summary>VPC7</summary>
+
+  ```
+  ip 193.1.6.210 193.1.6.112 24
+  ip auto
+  ```
+</details>
+
+<details>
+  <summary>VPC</summary>
+
+  ```
+  ip 193.1.7.200 193.1.7.112 24
+  ip auto
+  ```
+</details>
+
+<details>
+  <summary>VPC8</summary>
+
+  ```
+  ip 193.1.7.210 193.1.7.102 24
+  ip auto
+  ```
+</details>
