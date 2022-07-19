@@ -39,6 +39,12 @@
 |AS1001|Москва      |`192.168.6.0/24`|`193.1.6.0/24`|`2001:6::/64`|
 |AS2042|С.-Петербург|`192.168.7.0/24`|`193.1.7.0/24`|`2001:7::/64`|
 
+В дальнейшем все устройства будут идти в том же порядке, что и
+автономные системы в этой таблице, например все устройства
+Московской AC, будут перед всеми устройствами Питерской.
+
+Между собой устройства будут упорядочены по номеру.
+
 Для каждого устройства в сети назначим адреса в соответствии с подсетями.
 
 ### Роутеры
@@ -127,11 +133,11 @@
 |SW9 |e0/0|`193.1.7.100`|`2001:7::1:0:0`|
 |    |e0/1|`193.1.7.101`|`2001:7::1:0:1`|
 |    |e0/2|`193.1.7.102`|`2001:7::1:0:2`|
-|    |e0/3|`193.1.7.102`|`2001:7::1:0:2`|
+|    |e0/3|`193.1.7.103`|`2001:7::1:0:3`|
 |SW10|e0/0|`193.1.7.110`|`2001:7::1:1:0`|
 |    |e0/1|`193.1.7.111`|`2001:7::1:1:1`|
 |    |e0/2|`193.1.7.112`|`2001:7::1:1:2`|
-|    |e0/3|`193.1.7.112`|`2001:7::1:1:2`|
+|    |e0/3|`193.1.7.113`|`2001:7::1:1:3`|
 
 ### VPCs
 
@@ -142,6 +148,38 @@
 |VPC7|`193.1.6.210`|`2001:6::2:1:0`|
 |VPC  |`193.1.7.200`|`2001:7::2:0:0`|
 |VPC8 |`193.1.7.210`|`2001:7::2:1:0`|
+
+### Link-local адреса
+
+Также назначим всем устройствам link-local IPv6 адреса,
+по номеру устройства из `FE80::` подсети:
+
+|Устройство|Link-local адрес (IPv6)|
+|R22 |`FE80::22`|
+|R21 |`FE80::21`|
+|R23 |`FE80::23`|
+|R24 |`FE80::24`|
+|R25 |`FE80::25`|
+|R26 |`FE80::26`|
+|R27 |`FE80::27`|
+|R28 |`FE80::28`|
+|R12 |`FE80::12`|
+|R13 |`FE80::13`|
+|R14 |`FE80::14`|
+|R15 |`FE80::15`|
+|R19 |`FE80::19`|
+|R20 |`FE80::20`|
+|R16 |`FE80::16`|
+|R17 |`FE80::17`|
+|R18 |`FE80::18`|
+|R32 |`FE80::32`|
+|SW29|`FE80::29`|
+|SW2 |`FE80::2`|
+|SW3 |`FE80::3`|
+|SW4 |`FE80::4`|
+|SW5 |`FE80::5`|
+|SW9 |`FE80::9`|
+|SW10|`FE80::10`|
 
 ### VLAN
 
@@ -172,7 +210,791 @@
 
 #### Роутеры
 
+TODO
+
 #### Свичи
+
+<details>
+  <summary>SW29</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW29
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  ip cef
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  vlan 200
+  !
+  vlan 300
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   switchport access vlan 200
+   switchport mode access
+  !
+  interface Ethernet0/1
+   no shutdown
+   switchport access vlan 300
+   switchport mode access
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.5.102
+   ipv6 address 2001:5::1:0:2
+   ipv6 address FE80::29 link-local
+  !
+  interface Vlan200
+   no shutdown
+   ip address 193.1.5.100
+   ipv6 address 2001:5::1:0:0
+   ipv6 address FE80::29 link-local
+  !
+  interface Vlan300
+   no shutdown
+   ip address 193.1.5.101
+   ipv6 address 2001:5::1:0:1
+   ipv6 address FE80::29 link-local
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
+
+На `SW2` и `SW3` настроим access port'ы для VPCs
+и соеденим их с `SW4` и `SW5` trunk'ом:
+
+<details>
+  <summary>SW2</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW2
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  vtp mode transparent
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  vlan 400
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/1
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/2
+   no shutdown
+   switchport access vlan 400
+   switchport mode access
+  !
+  interface Vlan400
+   no shutdown
+   ip address 193.1.6.102
+   ip6 address 2001:6::1:0:2
+   ip6 address FE80::2 link-local
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip default-gateway 193.1.6.120
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>SW3</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW3
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  vtp mode transparent
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  !
+  vlan 500
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/1
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/2
+   no shutdown
+   switchport access vlan 500
+   switchport mode access
+  !
+  interface Vlan500
+   no shutdown
+   ip address 193.1.6.112
+   ip6 address 2001:6::1:1:2
+   ip6 address FE80::3 link-local
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip default-gateway 193.1.6.130
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>SW4</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW4
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  vtp mode transparent
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/1
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/2
+   no shutdown
+  !
+  interface Ethernet0/3
+   no shutdown
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet1/1
+   no shutdown
+   switchport trunk allowed vlan 100,400,500
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet1/2
+   no shutdown
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   shutdown
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip default-gateway 193.1.6.130
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>SW5</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW5
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  vtp mode transparent
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   switchport trunk allowed vlan 10,70,1000
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/1
+   no shutdown
+   switchport trunk allowed vlan 10,70,1000
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet0/2
+   no shutdown
+  !
+  interface Ethernet0/3
+   no shutdown
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   switchport trunk allowed vlan 10,70,1000
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet1/1
+   no shutdown
+   switchport trunk allowed vlan 10,70,1000
+   switchport trunk encapsulation dot1q
+   switchport mode trunk
+  !
+  interface Ethernet1/2
+   no shutdown
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   shutdown
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip default-gateway 193.1.6.120
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
+
+И остальные свичи:
+
+<details>
+  <summary>SW9</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW9
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  vtp mode transparent
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  vlan 600
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.7.100
+   ipv6 address 2001:7::1:0:0
+   ipv6 address FE80::9 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.7.101
+   ipv6 address 2001:7::1:0:1
+   ipv6 address FE80::9 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   switchport access vlan 600
+   switchport mode access
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.7.103
+   ipv6 address 2001:7::1:0:3
+   ipv6 address FE80::9 link-local
+  !
+  interface Vlan600
+   no shutdown
+   ip address 193.1.7.102
+   ipv6 address 2001:7::1:0:2
+   ipv6 address FE80::9 link-local
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>SW10</summary>
+
+  ```
+  version 15.2
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  service compress-config
+  !
+  hostname SW10
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  !
+  !
+  !
+  !
+  !
+  vtp mode transparent
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  !
+  spanning-tree mode pvst
+  spanning-tree extend system-id
+  !
+  vlan internal allocation policy ascending
+  !
+  vlan 700
+  !
+  vlan 100
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.7.110
+   ipv6 address 2001:7::1:1:0
+   ipv6 address FE80::10 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.7.111
+   ipv6 address 2001:7::1:1:1
+   ipv6 address FE80::10 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   switchport access vlan 700
+   switchport mode access
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.7.113
+   ipv6 address 2001:7::1:1:3
+   ipv6 address FE80::10 link-local
+  !
+  interface Vlan700
+   no shutdown
+   ip address 193.1.7.112
+   ipv6 address 2001:7::1:1:2
+   ipv6 address FE80::10 link-local
+  !
+  interface Vlan100
+   no shutdown
+  !
+  ip forward-protocol nd
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+  !
+  !
+  end
+  ```
+</details>
 
 #### VPCs
 
