@@ -210,7 +210,2401 @@
 
 #### Роутеры
 
-TODO
+<details>
+  <summary>R22</summary>
+
+  ```
+
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R22
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.1.0 255.255.255.0
+   ipv6 address 2001:1::0
+   ipv6 address FE80::22 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.1.1 255.255.255.0
+   ipv6 address 2001:1::1
+   ipv6 address FE80::22 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.1.2 255.255.255.0
+   ipv6 address 2001:1::2
+   ipv6 address FE80::22 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R21</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R21
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.2.0 255.255.255.0
+   ipv6 address 2001:2::0
+   ipv6 address FE80::21 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.2.1 255.255.255.0
+   ipv6 address 2001:2::1
+   ipv6 address FE80::21 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.2.2 255.255.255.0
+   ipv6 address 2001:2::2
+   ipv6 address FE80::21 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R23</summary>
+
+  ```
+
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R23
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.3.0 255.255.255.0
+   ipv6 address 2001:3::0
+   ipv6 address FE80::23 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.3.1 255.255.255.0
+   ipv6 address 2001:3::1
+   ipv6 address FE80::23 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.3.2 255.255.255.0
+   ipv6 address 2001:3::2
+   ipv6 address FE80::23 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R24</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R24
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.3.10 255.255.255.0
+   ipv6 address 2001:3::1:0
+   ipv6 address FE80::24 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.3.11 255.255.255.0
+   ipv6 address 2001:3::1:1
+   ipv6 address FE80::24 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.3.12 255.255.255.0
+   ipv6 address 2001:3::1:2
+   ipv6 address FE80::24 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.3.13 255.255.255.0
+   ipv6 address 2001:3::1:3
+   ipv6 address FE80::24 link-local
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R25</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R25
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.3.20 255.255.255.0
+   ipv6 address 2001:3::2:0
+   ipv6 address FE80::25 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.3.21 255.255.255.0
+   ipv6 address 2001:3::2:1
+   ipv6 address FE80::25 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.3.22 255.255.255.0
+   ipv6 address 2001:3::2:2
+   ipv6 address FE80::25 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.3.23 255.255.255.0
+   ipv6 address 2001:3::2:3
+   ipv6 address FE80::25 link-local
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R26</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R26
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.3.30 255.255.255.0
+   ipv6 address 2001:3::3:0
+   ipv6 address FE80::26 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.3.31 255.255.255.0
+   ipv6 address 2001:3::3:1
+   ipv6 address FE80::26 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.3.32 255.255.255.0
+   ipv6 address 2001:3::3:2
+   ipv6 address FE80::26 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.3.33 255.255.255.0
+   ipv6 address 2001:3::3:3
+   ipv6 address FE80::26 link-local
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R27</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R27
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.4.0 255.255.255.0
+   ipv6 address 2001:4::0
+   ipv6 address FE80::27 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R28</summary>
+
+  ```
+
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R28
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.5.0 255.255.255.0
+   ipv6 address 2001:5::0
+   ipv6 address FE80::28 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.5.1 255.255.255.0
+   ipv6 address 2001:5::1
+   ipv6 address FE80::28 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.5.2 255.255.255.0
+   ipv6 address 2001:5::2
+   ipv6 address FE80::28 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R12</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R12
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   no ip address
+  !
+  interface Ethernet0/0.100
+   no shutdown
+   encapsulation dot1Q 100
+   ip address 193.1.6.0 255.255.255.0
+   ipv6 address 2001:6::0
+   ipv6 address FE80::12 link-local
+  !
+  interface Ethernet0/0.400
+   no shutdown
+   encapsulation dot1Q 400
+   ip address 193.1.6.0 255.255.255.0
+   ipv6 address 2001:6::0
+   ipv6 address FE80::12 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   no ip address
+  !
+  interface Ethernet0/1.500
+   no shutdown
+   encapsulation dot1Q 500
+   ip address 193.1.6.1 255.255.255.0
+   ipv6 address 2001:6::1
+   ipv6 address FE80::12 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.6.2 255.255.255.0
+   ipv6 address 2001:6::2
+   ipv6 address FE80::12 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.6.3 255.255.255.0
+   ipv6 address 2001:6::3
+   ipv6 address FE80::12 link-local
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R13</summary>
+
+  ```
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R13
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   no ip address
+  !
+  interface Ethernet0/0.100
+   no shutdown
+   encapsulation dot1Q 100
+   ip address 193.1.6.10 255.255.255.0
+   ipv6 address 2001:6::1:0
+   ipv6 address FE80::13 link-local
+  !
+  interface Ethernet0/0.500
+   no shutdown
+   ip address 100.0.1.1 255.255.255.0
+   ipv6 address FE80::13 link-local
+   ipv6 address 2001:1001:0:101::13/64
+  !
+  interface Ethernet0/1
+   no shutdown
+   no ip address
+  !
+  interface Ethernet0/1.400
+   no shutdown
+   encapsulation dot1Q 400
+   ip address 193.1.6.11 255.255.255.0
+   ipv6 address 2001:6::1:1
+   ipv6 address FE80::13 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.6.12 255.255.255.0
+   ipv6 address 2001:6::1:2
+   ipv6 address FE80::13 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.6.13 255.255.255.0
+   ipv6 address 2001:6::1:3
+   ipv6 address FE80::13 link-local
+  !
+  interface Ethernet1/0
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet1/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R14</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R14
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.6.20 255.255.255.0
+   ipv6 address 2001:6::2:0
+   ipv6 address FE80::14 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.6.21 255.255.255.0
+   ipv6 address 2001:6::2:1
+   ipv6 address FE80::14 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.6.22 255.255.255.0
+   ipv6 address 2001:6::2:2
+   ipv6 address FE80::14 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.6.23 255.255.255.0
+   ipv6 address 2001:6::2:3
+   ipv6 address FE80::14 link-local
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R15</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R15
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.6.30 255.255.255.0
+   ipv6 address 2001:6::3:0
+   ipv6 address FE80::15 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.6.31 255.255.255.0
+   ipv6 address 2001:6::3:1
+   ipv6 address FE80::15 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.6.32 255.255.255.0
+   ipv6 address 2001:6::3:2
+   ipv6 address FE80::15 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.6.33 255.255.255.0
+   ipv6 address 2001:6::3:3
+   ipv6 address FE80::15 link-local
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R19</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R19
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.6.40 255.255.255.0
+   ipv6 address 2001:6::4:0
+   ipv6 address FE80::19 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R20</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R20
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.6.50 255.255.255.0
+   ipv6 address 2001:6::5:0
+   ipv6 address FE80::20 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R16</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R16
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.7.0 255.255.255.0
+   ipv6 address 2001:7::0
+   ipv6 address FE80::16 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.7.1 255.255.255.0
+   ipv6 address 2001:7::1
+   ipv6 address FE80::16 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.7.2 255.255.255.0
+   ipv6 address 2001:7::2
+   ipv6 address FE80::16 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.7.3 255.255.255.0
+   ipv6 address 2001:7::3
+   ipv6 address FE80::16 link-local
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R17</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R17
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.7.10 255.255.255.0
+   ipv6 address 2001:7::1:0
+   ipv6 address FE80::17 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.7.11 255.255.255.0
+   ipv6 address 2001:7::1:1
+   ipv6 address FE80::17 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.7.12 255.255.255.0
+   ipv6 address 2001:7::1:2
+   ipv6 address FE80::17 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R18</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R18
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.7.20 255.255.255.0
+   ipv6 address 2001:7::2:0
+   ipv6 address FE80::18 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   ip address 193.1.7.21 255.255.255.0
+   ipv6 address 2001:7::2:1
+   ipv6 address FE80::18 link-local
+  !
+  interface Ethernet0/2
+   no shutdown
+   ip address 193.1.7.22 255.255.255.0
+   ipv6 address 2001:7::2:2
+   ipv6 address FE80::18 link-local
+  !
+  interface Ethernet0/3
+   no shutdown
+   ip address 193.1.7.23 255.255.255.0
+   ipv6 address 2001:7::2:3
+   ipv6 address FE80::18 link-local
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
+
+<details>
+  <summary>R32</summary>
+
+  ```
+  !
+  version 15.4
+  service timestamps debug datetime msec
+  service timestamps log datetime msec
+  no service password-encryption
+  !
+  hostname R32
+  !
+  boot-start-marker
+  boot-end-marker
+  !
+  !
+  !
+  no aaa new-model
+  clock timezone EET 2 0
+  mmi polling-interval 60
+  no mmi auto-configure
+  no mmi pvc
+  mmi snmp-timeout 180
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+
+
+  !
+  !
+  !
+  !
+  ip cef
+  ipv6 unicast-routing
+  no ipv6 cef
+  !
+  multilink bundle-name authenticated
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  redundancy
+  !
+  !
+  ! 
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  interface Ethernet0/0
+   no shutdown
+   ip address 193.1.7.30 255.255.255.0
+   ipv6 address 2001:7::3:0
+   ipv6 address FE80::32 link-local
+  !
+  interface Ethernet0/1
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/2
+   no shutdown
+   no ip address
+   shutdown
+  !
+  interface Ethernet0/3
+   no shutdown
+   no ip address
+   shutdown
+  !
+  ip forward-protocol nd
+  !
+  !
+  no ip http server
+  no ip http secure-server
+  !
+  !
+  !
+  !
+  control-plane
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  !
+  line con 0
+   logging synchronous
+  line aux 0
+  line vty 0 4
+   login
+   transport input none
+  !
+  !
+  end
+  ```
+</details>
 
 #### Свичи
 
