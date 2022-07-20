@@ -105,8 +105,8 @@ for sw in sws:
             print(" switchport mode access")
         else:
             print(f" ip address {ipv4}")
-            print(f" ip6 address {ipv6}")
-            print(f" ip6 address {link_local[sw]} link-local")
+            print(f" ipv6 address {ipv6}")
+            print(f" ipv6 address {link_local[sw]} link-local")
 
         print("!")
 
