@@ -336,33 +336,126 @@ ping 192.168.1.1
 
 ### Настройка устройств
 
-Настроим маршрутизацию
+Настроим IPv6 маршрутизацию:
 
+`R1`:
 
-### Проверка раздачи SLAAC адресов с R1
+```
+enable
+configure terminal
+  interface Ethernet0/0
+    ipv6 address 2001:db8:acad:2::1/64
+    ipv6 address fe80::1 link-local
+    no shutdown
 
-TODO
+  interface Ethernet0/1
+    ipv6 address 2001:db8:acad:1::1/64
+    ipv6 address fe80::1 link-local
+    no shutdown
 
-### Настройка DHCP серверов (stateless и stateful) на R1
+  ipv6 unicast-routing
+  ipv6 route ::/0 2001:db8:acad:2::2
+```
 
-TODO
+`R2`:
 
-<details>
-  <summary>Проверим работоспособность конфигурации</summary>
+```
+enable
+configure terminal
+  interface Ethernet0/0
+    ipv6 address 2001:db8:acad:2::2/64
+    ipv6 address fe80::2 link-local
+    no shutdown
 
-  ```
-  TODO
-  ```
-</details>
+  interface Ethernet0/1
+    ipv6 address 2001:db8:acad:3::1/64
+    ipv6 address fe80::1 link-local
+    no shutdown
+
+ipv6 unicast-routing
+ipv6 route ::/0 2001:db8:acad:2::1
+```
+
+### Проверка назначения SLAAC адресов
+
+Проверим, что VPC1 присваивается IPv6 адрес по SLAAC:
+
+```
+# ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..:
+   Physical Address................: 00E0.B0CC.2EC1
+   Link-local IPv6 Address.........: FE80::2E0:B0FF:FECC:2EC1
+   IPv6 Address....................: 2001:DB8:ACAD:1:2E0:B0FF:FECC:2EC1
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................:
+   DHCPv6 Client DUID..............: 00-01-00-01-E2-25-BA-B9-00-E0-B0-CC-2E-C1
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+
+### Настройка DHCP серверов
+
+#### Stateless
+
+Настроим stateless DHCPv6 сервер на `R1`:
+
+```
+ipv6 dhcp pool R1-STATELESS
+  dns-server 2001:db8:acad::254
+  domain-name STATELESS.com
+
+interface Ethernet0/1
+  ipv6 nd other-config-flag
+  ipv6 dhcp server R1-STATELESS
+```
+
+Проверим, что по SLAAC, помимо адреса получается также IAID и суффикс:
+
+```
+# ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: STATELESS.com
+   Physical Address................: 00E0.B0CC.2EC1
+   Link-local IPv6 Address.........: FE80::2E0:B0FF:FECC:2EC1
+   IPv6 Address....................: 2001:DB8:ACAD:1:2E0:B0FF:FECC:2EC1
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 2044494489
+   DHCPv6 Client DUID..............: 00-01-00-01-E2-25-BA-B9-00-E0-B0-CC-2E-C1
+   DNS Servers.....................: 2001:DB8:ACAD::254
+                                     0.0.0.0
+```
+
+#### Stateful
+
+Теперь настроим stateful сервер:
+
+```
+ipv6 dhcp pool R2-STATEFUL
+  address prefix 2001:db8:acad:3:aaa::/80
+  dns-server 2001:db8:acad::254
+  domain-name STATEFUL.com
+
+interface Ethernet0/0
+  ipv6 dhcp server R2-STATEFUL
+```
 
 ### Настройка DHCP реле на R2
 
-TODO
-
-<details>
-  <summary>Проверим работоспособность конфигурации</summary>
-
-  ```
-  TODO
-  ```
-</details>
+```
+interface Ethernet0/1
+  ipv6 nd managed-config-flag
+  ipv6 dhcp relay destination 2001:db8:acad:2::1 Ethernet0/0
+```
